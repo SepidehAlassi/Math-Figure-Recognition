@@ -20,9 +20,9 @@ def get_session():
 
 def parse_args():
     parser = argparse.ArgumentParser(description='testing script.')
-    parser.add_argument('--annotations', default='/Users/sepidehalassi/dev/meditatio_keras/Meditatio/annotations.csv', help='Path to annotations')
-    parser.add_argument('--classes', default='/Users/sepidehalassi/dev/meditatio_keras/Meditatio/meditatio_classes.csv', help='Path to a CSV file containing class label mapping (required)')
-    parser.add_argument('--val_path', default='/Users/sepidehalassi/dev/Meditatio_Images/images/Med_Ms_p0132_F_1_rgb_extracted.jpg', help='Path to image')
+    parser.add_argument('--annotations', default='train/annotations.csv', help='Path to annotations')
+    parser.add_argument('--classes', default='train/meditatio_classes.csv', help='Path to a CSV file containing class label mapping (required)')
+    parser.add_argument('--val_path', default='test/images/Med_Ms_p0132_F_1_rgb_extracted.jpg', help='Path to image')
     parser.add_argument('--weights', help='Weights to use for initialization (defaults to ImageNet).',
                         default='imagenet')
     parser.add_argument('--batch-size', help='Size of the batches.', default=1, type=int)
@@ -46,7 +46,7 @@ if __name__ == '__main__':
     args = parse_args()
     # os.environ["CUDA_VISIBLE_DEVICES"] = "0"
     keras.backend.tensorflow_backend.set_session(get_session())
-    model = keras.models.load_model('snapshots/resnet50_csv_wtext.h5', custom_objects=custom_objects)
+    model = keras.models.load_model('../snapshots/resnet50_csv_wtext.h5', custom_objects=custom_objects)
     test_image_data_generator = keras.preprocessing.image.ImageDataGenerator()
     #
     # # create a generator for testing data
