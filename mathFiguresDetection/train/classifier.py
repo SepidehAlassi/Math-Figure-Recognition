@@ -58,6 +58,6 @@ def classifier(annotationDir, imagesDir, outputFile):
 if __name__ == '__main__':
      args = sys.argv
      annotationDir, imagesDir= args[1], args[2]
-     outputFile=open(os.path.join(cwd,'Meditatio','annotations.csv'), 'w')
+     outputFile=open(os.path.join(cwd,'train','annotations.csv'), 'w')
      classifier(annotationDir, imagesDir, outputFile)
      outputFile.close()
