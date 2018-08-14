@@ -43,13 +43,14 @@ def getCoord(b, size, scale):
     else:
         return b
 
+dir=os.getcwd()
 
 def detectAlphabets(imageToRecognize):
     args = parse_args()
     args.val_path = imageToRecognize
     # os.environ["CUDA_VISIBLE_DEVICES"] = "0"
     keras.backend.tensorflow_backend.set_session(get_session())
-    model = keras.models.load_model('../snapshots/resnet50_csv_wtext.h5', custom_objects=custom_objects)
+    model = keras.models.load_model(os.path.join(dir, '../snapshots/resnet50_csv_wtext.h5'), custom_objects=custom_objects)
     test_image_data_generator = keras.preprocessing.image.ImageDataGenerator()
     #
     # # create a generator for testing data

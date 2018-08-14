@@ -1,6 +1,5 @@
-from mathFiguresDetection.test.detectLabels import detectAlphabets
+
 import os
 
 if __name__ == '__main__':
     imageToRecognize = os.path.join('test/images', 'Med_Ms_p0132_M_5_rgb_extracted.jpg')
-    detectAlphabets()
