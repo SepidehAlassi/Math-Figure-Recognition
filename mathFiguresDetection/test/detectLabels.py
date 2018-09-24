@@ -43,7 +43,8 @@ def getCoord(b, size, scale):
     else:
         return b
 
-dir=os.getcwd()
+dir = os.getcwd()
+
 
 def detectAlphabets(imageToRecognize):
     args = parse_args()
@@ -90,7 +91,7 @@ def detectAlphabets(imageToRecognize):
     plt.figure(figsize=(15, 15))
     plt.axis('off')
     for idx, (label, score) in enumerate(zip(predicted_labels, scores)):
-        if score < 0.4:
+        if score < 0.5:
             continue
         b = scaled_detection[idx, :4].astype(int)
         cv2.rectangle(draw, (b[0], b[1]), (b[2], b[3]), (0, 0, 255), 1)
@@ -98,11 +99,13 @@ def detectAlphabets(imageToRecognize):
         caption = test_generator.label_to_name(label)
         cv2.putText(draw, caption, (b[0], b[1] - 1), cv2.FONT_HERSHEY_PLAIN, 1, (255, 255, 255), 1)
         recognized[caption] = b
-        print(caption + ":" + str(score))
+        print(caption + ", score=" + str(score))
 
     plt.imshow(draw)
     plt.show()
     return recognized, draw
+
+
 if __name__ == '__main__':
     # parse arguments
 
