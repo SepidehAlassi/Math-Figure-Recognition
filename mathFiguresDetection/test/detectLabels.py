@@ -91,12 +91,14 @@ def detectAlphabets(imageToRecognize):
     plt.figure(figsize=(15, 15))
     plt.axis('off')
     for idx, (label, score) in enumerate(zip(predicted_labels, scores)):
-        if score < 0.5:
+        if score < 0.35:
             continue
         b = scaled_detection[idx, :4].astype(int)
         cv2.rectangle(draw, (b[0], b[1]), (b[2], b[3]), (0, 0, 255), 1)
 
         caption = test_generator.label_to_name(label)
+        if caption == "equal":
+            caption = "="
         cv2.putText(draw, caption, (b[0], b[1] - 1), cv2.FONT_HERSHEY_PLAIN, 1, (255, 255, 255), 1)
         recognized[caption] = b
         print(caption + ", score=" + str(score))
@@ -109,7 +111,7 @@ def detectAlphabets(imageToRecognize):
 if __name__ == '__main__':
     # parse arguments
 
-    imageToRecognize = os.path.join('test/images', 'Med_MS_p0165_F_1_rgb_extracted.jpg')
+    imageToRecognize = os.path.join('test/images', 'Med_Ms_p0366_M_3_rgb_extracted.jpg')
     recognized, image = detectAlphabets(imageToRecognize)
 
 
